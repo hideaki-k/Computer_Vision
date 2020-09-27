@@ -34,8 +34,8 @@ class Struct:
     pass
 
 def main(argv):
-    inputfile = 'dvSave-2020_09_22_18_29_15.aedat4'
-    outputfile = 'dvSave-2020_09_22_18_29_15.mat'
+    inputfile = 'dvSave-2020_09_22_18_29_59.aedat4'
+    outputfile = 'dvSave-2020_09_22_18_29_59.mat'
     try:
         opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
     except getopt.GetoptError:
@@ -64,6 +64,7 @@ def main(argv):
     out.data.polarity.timeStamp = []
     out.data.polarity.x = []
     out.data.polarity.y = []
+    out.data.polarity.events = []
 
     #Frames
     out.data.frame.samples = []
@@ -95,6 +96,8 @@ def main(argv):
             out.data.polarity.polarity.append(e.polarity)
             out.data.polarity.x.append(e.x)
             out.data.polarity.y.append(e.y)
+            out.data.polarity.events.append(e.x)
+
 
         # loop through the "frames" stream
         for frame in f['frames']:
