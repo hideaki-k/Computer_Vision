@@ -1,0 +1,13 @@
+filename ='dvSave-2020_09_22_19_12_40.mat';
+s = load(filename);
+
+sample = s.aedat.data.frame.samples;
+class(size(sample));
+endtime = length(sample)
+for i = 0:endtime % run through data in milliseconds steps
+    figure(1)
+    image = sample(:,:,i)
+
+video = read(sample);
+size(sample(:,:,1));
+image(sample(:,:,50));
