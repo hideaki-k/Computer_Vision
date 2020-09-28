@@ -9,17 +9,19 @@ s = load(filename);
 % polarity_x = s.aedat.data.polarity.x;
 % size(polarity_x)
 % 
-polarity_x = s.aedat.data.polarity.x(1:1000)
-polarity_y = s.aedat.data.polarity.y(1:1000)
-T = s.aedat.data.polarity.timeStamp(1:1000)
-pol = s.aedat.data.polarity.polarity(1:1000)
+polarity_x = s.aedat.data.polarity.x(1:10000);
 
-polarity_x = rot90(polarity_x)
-polarity_y = rot90(polarity_y)
-pol = rot90(pol)
-T = rot90(T)
+polarity_y = s.aedat.data.polarity.y(1:10000);
+T = cast(s.aedat.data.polarity.timeStamp(1:10000),'uint64')
+pol = s.aedat.data.polarity.polarity(1:10000);
 
-events = horzcat(polarity_x,polarity_y,pol,T)
+polarity_x = rot90(polarity_x,-1);
+polarity_y = rot90(polarity_y,-1);
+pol = rot90(pol,-1);
+T = rot90(T,-1);
+disp(type(T))
+
+events = horzcat(polarity_x, polarity_y, pol, T);
 save('myFile.mat','events','-v7.3','-nocompression')
 % size(polarity_x)
 % disp(polarity_x)
