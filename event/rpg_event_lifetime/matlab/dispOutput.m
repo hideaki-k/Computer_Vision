@@ -34,7 +34,7 @@ s = 1e+05; % scale factor for quiver plot
 velEvents(:,4) = velEvents(:,4)-velEvents(1,4);
 
 endtime = round(velEvents(end,4)/1000); % endtime in ms
-IMAGE_FRAME = [128,128]; % image frame
+IMAGE_FRAME = [260,346]; % image frame
 timemat = zeros(IMAGE_FRAME); % initialize display time matrix
 colormat = zeros(IMAGE_FRAME); % initialize color matrix
 velocitymat = zeros(IMAGE_FRAME(1),IMAGE_FRAME(2),3); % initialize velocity vector matrix

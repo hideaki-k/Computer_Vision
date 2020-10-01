@@ -1,0 +1,28 @@
+deploy:
+  image: python:3
+  before_script:
+    - pip3 install twine
+  script:
+    - echo "$CI_COMMIT_REF_NAME" > VERSION.txt
+    - python3 setup.py sdist
+    - twine upload -u "inivation" -p "$PYPI_PASSWORD" "dist/*"
+  rules:
+    - if: $CI_COMMIT_TAG
+
+sonarcloud_analysis:
+  stage: build
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: [""]
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"
+  script:
+    - sonar-scanner
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+    - if: $CI_COMMIT_BRANCH == "master"
+  cache:
+    key: sonar-cache
+    paths:
+      - .sonar/cache
+    policy: pull-push

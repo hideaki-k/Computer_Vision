@@ -36,7 +36,7 @@ if(mod(N,2) == 0)
 end
 
 
-IMAGE_FRAME = [128,128]; % Imageframe
+IMAGE_FRAME = [260,346]; % Imageframe
 
 % preallocate space
 surfPos = zeros(IMAGE_FRAME);
