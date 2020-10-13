@@ -36,7 +36,7 @@ if(mod(N,2) == 0)
 end
 
 
-IMAGE_FRAME = [128,128]; % Imageframe
+IMAGE_FRAME = [260,346]; % Imageframe
 
 % preallocate space
 surfPos = zeros(IMAGE_FRAME);
@@ -75,7 +75,7 @@ surface(y,x) = t;
 
     
 %% Positive Events
-if(p == -1)
+if(p == 0)
     surfPos(y,x) = t; % assign incoming event to positive SAE
     % check if pixel in imageFrame, depending on window size N  
     if(((IMAGE_FRAME(1)-floor(N/2)>=x) && (x>=ceil(N/2))) && ((IMAGE_FRAME(2)-floor(N/2)>=y) && (y>=ceil(N/2))))

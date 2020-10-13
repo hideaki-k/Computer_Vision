@@ -3,10 +3,10 @@ import numpy as np
 
 # 画像読み込み先のパス，結果保存用のパスの設定
 template_path = "img/template/"
-template_filename = "you_shitsu.jpg"
+template_filename = "temp.jpg"
 
 sample_path = "img/sample/"
-sample_filename = "floor_plan_001.jpg"
+sample_filename = "lro.jpg"
 
 result_path = "img/result_AKAZE/"
 result_name = "no_change.jpg"
@@ -35,7 +35,7 @@ bf = cv2.BFMatcher()
 matches = bf.knnMatch(des_temp, des_samp, k=2)
 
 # マッチング精度が高いもののみ抽出
-ratio = 0.5
+ratio = 0.1
 good = []
 for m, n in matches:
     if m.distance < ratio * n.distance:

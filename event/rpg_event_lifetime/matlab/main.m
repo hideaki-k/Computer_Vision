@@ -15,7 +15,7 @@ data_folder = 'data';
 %dataset = 'garfield.mat';
 
 % Experiment 3: quadrotor flip
-dataset = 'myFile.mat';
+dataset = 'lunar.mat';
 
 % Experiment 4: building
 %dataset = 'building.mat';
@@ -42,8 +42,8 @@ events_with_lifetime = calcVelocity(events, N, epsilon, mu, reg, vis);
 
 %% Create video
 % visualization parameter for lifetime
-if strcmp(dataset, 'myFile.mat')
-    cmax = 500;
+if strcmp(dataset, 'lunar.mat')
+    cmax = 5000;
 else
     cmax = 14000;
 end
