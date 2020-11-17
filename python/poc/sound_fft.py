@@ -39,3 +39,14 @@ plt.show()
 y,fs = cis.wavread("audio/domiso.wav")
 plt.plot(np.abs(sfft.fft(y)))
 plt.show()
+
+plt.plot(np.abs(sfft.fft(y[1300:1812]*np.hanning(512))))
+plt.show()
+
+S,F,T = mlab.specgram(y,Fs=fs,NFFT=256,window=np.hanning(256),noverlap=128,mode='complex',sides='twosided')
+print(S.shape)
+
+_,_,_,_= plt.specgram(y,Fs=fs,NFFT=256,window=np.hanning(256),noverlap=128)
+_ = plt.xlabel('Time(s)')
+_ = plt.ylabel('Frequency (Hz)')
+plt.show()
