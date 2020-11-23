@@ -4,6 +4,7 @@ from matplotlib import pyplot as plt
 
 img_bgr = cv2.imread('sample.jpg')
 img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
+img = cv2.resize(img,(512,512))
 img_ = img.copy()
 print(img.shape)
 height = img.shape[0]
@@ -24,7 +25,7 @@ Vthm = 0.2
 for h in range(F//2,height-(F//2),1):
     for w in range(F//2,width-(F//2),1):
         #print(h,w)
-        roi = img[h:h+F,w:w+F]
+        roi = img[(h-F//2):(h+F//2),(w-F//2):(w+F//2)]
         mu_ = np.mean(roi)
         #print("mu_",mu_)
         sigma_ = np.var(roi)
@@ -57,14 +58,19 @@ heitan_list = []
 img_suihei_binary = np.zeros((height,width))
 img_heitan_binary = np.zeros((height,width))
 
+Vthm = np.mean(img_suihei)
+Vths = c*np.mean(img_heitan)
 for h in range(F//2,height-(F//2),1):
     for w in range(F//2,width-(F//2),1):
-        roi = img[h:h+F,w:w+F]
+        heitan_roi = img_heitan[(h-F//2):(h+F//2),(w-F//2):(w+F//2)]
+        suihei_roi = img_suihei[(h-F//2):(h+F//2),(w-F//2):(w+F//2)]
         #Vthm = np.sum(roi)/F
         # 閾値設定は高いほど輝度分散が高いので、低く設定するほうが安全です
-        Vthm = 0.2 #水平度
+        #Vthm = 0.2 #水平度
+        #Vthm = np.mean(suihei_roi)
         #Vths = c*img_heitan[h,w]/F
-        Vths = 0.2 #平坦度
+        #Vths = 0.2 #平坦度
+        #Vths = c * np.mean(heitan_roi)
         if img_heitan[h,w] <= Vths:
             #plt.imshow(roi)
             #plt.show()
@@ -75,7 +81,7 @@ for h in range(F//2,height-(F//2),1):
             #plt.show()
         else:
             img_heitan_binary[h,w] = 0
-        if img_suihei[h,w] < Vthm:
+        if np.abs(img_suihei[h,w]) < Vthm:
             img_suihei_binary[h,w] = 1
         else:
             img_suihei_binary[h,w] = 0
