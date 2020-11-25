@@ -50,3 +50,16 @@ _,_,_,_= plt.specgram(y,Fs=fs,NFFT=256,window=np.hanning(256),noverlap=128)
 _ = plt.xlabel('Time(s)')
 _ = plt.ylabel('Frequency (Hz)')
 plt.show()
+
+
+# NFFTはFFTの長さ,長いと周波数解像度は高くなるが時間解像度が低くなる
+plt.figure(1);P,E,T,im = plt.specgram(y,Fs=fs,NFFT=256,window=np.hanning(256),noverlap=128)
+plt.figure(2);P,F,T,im = plt.specgram(y,Fs=fs,NFFT=512,window=np.hanning(512),noverlap=128)
+plt.show()
+
+S09 = S[:,9]
+plt.plot(np.abs(S09))
+plt.show()
+plt.plot(np.real(sfft.ifft(sfft.fftshift(S09))))
+plt.show()
+
