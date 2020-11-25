@@ -77,7 +77,7 @@ for h in range(F//2,height-(F//2),1):
 
         #if np.abs(img_suihei[h,w]) < Vthm:
             img_heitan_binary[h,w] = 1
-            #plt.imshow(roi,cmap='gray')
+            #plt.imshow(img[(h-F//2):(h+F//2),(w-F//2):(w+F//2)],cmap='gray')
             #plt.show()
         else:
             img_heitan_binary[h,w] = 0
