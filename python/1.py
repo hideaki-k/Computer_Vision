@@ -25,7 +25,7 @@ ax4.hist(im2.flatten(),128)
 ax2.imshow(Image.fromarray(im2),cmap="gray")
 plt.show()
 
-
+#
 
 
 
