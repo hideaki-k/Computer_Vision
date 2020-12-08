@@ -1,14 +1,15 @@
-img_bgr = imread('sample_2.jpg');
-img_ = imread('sample_2.jpg');
-img_ = rgb2gray(img_);
-img_ = imresize(img_,[512,512]);
-img = rgb2gray(img_bgr);
-img = imresize(img,[512,512]);
+img = 'imgsh_20071222T022545_wm8_fp_s_3.jpg' %グレースケールの時
+img_bgr = imread(img);
+img_ = imread(img);
+% img_ = rgb2gray(img_);
+% img_ = imresize(img_,[512,512]);
+% % img = rgb2gray(img_bgr);
+% img = imresize(img,[512,512]);
 %imshow(img)
-height = size(img,1);
-width =size(img,2);
-mu = mean2(img)
-sigma = std2(img)
+height = size(img_,1)
+width =size(img_,2)
+mu = mean2(img_)
+sigma = std2(img_)
 
 img_suihei = zeros(height,width);
 img_heitan = zeros(height,width);
@@ -17,7 +18,7 @@ F = 16;
 for h = F/2:1:height-(F/2)
     for w = F/2:1:width-(F/2)
 %         h-(F/2),h+(F/2);
-        roi = img(h-(F/2)+1:h+(F/2), w-(F/2)+1:w+(F/2));
+        roi = img_(h-(F/2)+1:h+(F/2), w-(F/2)+1:w+(F/2));
 %         imshow(roi)
         mu_ = mean2(roi);
         sigma_ = std2(roi);
@@ -35,7 +36,7 @@ img_suihei_binary = zeros(height,width);
 img_heitan_binary = zeros(height,width);
 
 c = 0.8
-Vthm = mean2(img_suihei) %　水平度（輝度平均）
+Vthm =mean2(img_suihei) %　水平度（輝度平均）
 Vths = c*mean2(img_heitan) %　平坦度（分散）0.2953
 
 for h = F/2:1:height-(F/2)
