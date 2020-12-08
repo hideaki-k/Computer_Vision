@@ -1,5 +1,5 @@
-img_bgr = imread('sample.jpg');
-img_ = imread('sample.jpg');
+img_bgr = imread('sample_2.jpg');
+img_ = imread('sample_2.jpg');
 img_ = rgb2gray(img_);
 img_ = imresize(img_,[512,512]);
 img = rgb2gray(img_bgr);
@@ -64,3 +64,4 @@ title('heitan Image')
 subplot(1,3,3)
 imshow(img_)
 title('img')
+imwrite(img_,'img_.png')
