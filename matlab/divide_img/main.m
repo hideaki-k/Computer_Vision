@@ -1,0 +1,1 @@
+slidingwindow('sh_20071222T022545_wm8_fp_s.jpg' ,'sh_20071222T022545_wm8_fp_s');
