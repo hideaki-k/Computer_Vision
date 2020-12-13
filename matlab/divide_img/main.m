@@ -1,5 +1,6 @@
 %イメージをスライディングウィンドウで分割
-%slidingwindow('sh_20081102T071400_wm8_fp_l.jpg' ,'sh_20081102T071400_wm8_fp_l');
+
+% slidingwindow('sh_20081102T071400_wm8_fp_l.jpg' ,'sh_20081102T071400_wm8_fp_l');
 
 % 以下安全領域判定
 % カレントフォルダ内の *.jpg ファイル一覧をテーブル形式で取得
@@ -10,7 +11,7 @@ path_ = 'sh_20081102T071400_wm8_fp_l.jpg';
 test_ = imread(path_);
 size(test_)
 size(test)
-fileList = struct2table(dir('divided_img/*.jpg'));
+fileList = struct2table(dir('divided_img/*.png'));
 img_num = size(fileList,1)
 % テーブル内の、更新日時が最新の画像の行番号を取得
 [~, idx] = max(fileList.datenum);
