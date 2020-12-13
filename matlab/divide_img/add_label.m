@@ -13,7 +13,9 @@ img_ = im2gray(img_);
 height = size(img_,1);
 width =size(img_,2);
 mu = mean2(img);
-sigma = std2(img);
+img = double(img);
+sigma = var(img(:));
+%sigma = std2(img);
 
 img_suihei = zeros(height,width);
 img_heitan = zeros(height,width);
@@ -25,7 +27,9 @@ for h = F/2:1:height-(F/2)
         roi = img_(h-(F/2)+1:h+(F/2), w-(F/2)+1:w+(F/2));
 %         imshow(roi)
         mu_ = mean2(roi);
-        sigma_ = std2(roi);
+        roi = double(roi);
+        sigma_ = var(roi(:));
+        %sigma_ = std2(roi);
         roi_mu = (mu_-mu)/sqrt(sigma);
         roi_s = sqrt(sigma_)/sqrt(sigma);
         img_suihei(h,w) = abs(roi_mu);
@@ -39,7 +43,7 @@ end
 img_suihei_binary = zeros(height,width,3);
 img_heitan_binary = zeros(height,width,3);
 
-c = 0.8
+c = 0.5
 Vthm = mean2(img_suihei) %　水平度（輝度平均）
 Vths = c*mean2(img_heitan) %　平坦度（分散）0.2953
 
